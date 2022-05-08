@@ -12,11 +12,13 @@ I have decided to treat myself to a long holiday vacation in Honolulu, Hawaii! T
 
 In this section I used Python and SQLAlchemy, ORM queries, Pandas, and Matplotlib to perform basic climate analysis and data exploration of my climate database. 
 
-* I used the provided [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files to complete my climate analysis and data exploration.
+* I created a folder called Hawaii within the sqlalchemey-challenge repo
 
-* I used SQLAlchemy’s `create_engine` to connect to your SQLite database.
+* I used the starter code to create a notebook called climate_analysis.ipynb to complete my climate analysis and data exploration.
 
-* I used SQLAlchemy’s `automap_base()` to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
+* I used SQLAlchemy’s `create_engine` to connect to the hawaii.sqlite SQLite database in the Resources folder of the sqlalchemey-challenge repo.
+
+* I used SQLAlchemy’s `automap_base()` to reflect my tables into classes and save a reference to those classes called `Station` and `Measurement`.
 
 * I linked Python to the database by creating a SQLAlchemy session and closed out the session at the end of my notebook.
 
