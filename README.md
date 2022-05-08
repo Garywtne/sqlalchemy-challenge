@@ -38,9 +38,6 @@ previous_year = dt.date(2017,8,23) - dt.timedelta(days=365)
 #### Perform a query to retrieve the data and precipitation scores
 result = session.query(Measurement.date,Measurement.prcp).filter(Measurement.date>=previous_year).all()
 
-#### Perform a query to retrieve the data and precipitation scores
-result = session.query(Measurement.date,Measurement.prcp).filter(Measurement.date>=previous_year).all()
-
 #### Save the query results as a Pandas DataFrame and set the index to the date column
 df1 = pd.DataFrame(result,columns=['date', 'precipitation'])
 
