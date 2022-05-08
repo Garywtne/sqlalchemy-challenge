@@ -27,21 +27,45 @@ In this section I used Python and SQLAlchemy, ORM queries, Pandas, and Matplotli
 
 To perform an analysis of precipitation in the area, i have done the following:
 
-* Find the most recent date in the dataset.
+#### Find the most recent date in the data set.
+most_recent_date = session.query(func.max(Measurement.date)).first()
 
-* Using this date, retrieve the previous 12 months of precipitation data by querying the 12 previous months of data. **Note:** Do not pass in the date as a variable to your query.
+The most recent date is '2017-08-23'
 
-* Select only the `date` and `prcp` values.
+#### Calculate the date one year from the last date in data set.
+previous_year = dt.date(2017,8,23) - dt.timedelta(days=365)
 
-* Load the query results into a Pandas DataFrame, and set the index to the date column.
+#### Perform a query to retrieve the data and precipitation scores
+result = session.query(Measurement.date,Measurement.prcp).filter(Measurement.date>=previous_year).all()
 
-* Sort the DataFrame values by `date`.
+#### Perform a query to retrieve the data and precipitation scores
+result = session.query(Measurement.date,Measurement.prcp).filter(Measurement.date>=previous_year).all()
 
-* Plot the results by using the DataFrame `plot` method, as shown in the following image:
+#### Save the query results as a Pandas DataFrame and set the index to the date column
+df1 = pd.DataFrame(result,columns=['date', 'precipitation'])
 
-  ![precipitation](Images/precipitation.png)
+#### Sort the dataframe by date
+df1 = df1.sort_values('date')
 
-* Use Pandas to print the summary statistics for the precipitation data.
+#### Use Pandas Plotting with Matplotlib to plot the data
+
+df1.plot(x='date', y = 'precipitation', rot = 90, fontsize = 10)
+plt.title("Last 12 months of precipitation data", fontsize=15)
+plt.xlabel('Date', fontsize = 10)
+plt.ylabel('Inches', fontsize= 10)
+plt.legend(loc ="upper right", fontsize=10)
+plt.tight_layout
+plt.rcParams["figure.figsize"] = (20,20)
+plt.savefig("Homework_Images/Last 12 months of precipitation data.png")
+plt.show()
+
+![Last 12 months of precipitation data](https://user-images.githubusercontent.com/85430216/167317977-c1cd74d1-9b3e-4255-84a0-5f0932a6634b.png)
+
+#### Use Pandas to calcualte the summary statistics for the precipitation data
+df1.describe()
+
+![Summary_statistics](https://user-images.githubusercontent.com/85430216/167318036-ef57c763-1f09-43ab-a099-ffc1c775365c.PNG)
+
 
 #### Station Analysis
 
