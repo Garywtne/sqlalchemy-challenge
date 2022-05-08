@@ -1,28 +1,29 @@
 # sqlalchemy-challenge
 SQL Alchemy Homework
 
+![surfs-up](https://user-images.githubusercontent.com/85430216/167292209-56a1ca00-5c2b-46eb-87c7-40ce48218928.png)
+
 
 ## Instructions
 
-Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. The following sections outline the steps you must take to accomplish this task.
+I have decided to treat myself to a long holiday vacation in Honolulu, Hawaii! To help with my trip planning, I have done some climate analysis on the area. The following sections outline the steps I took to accomplish this task.
 
 ### Part 1: Climate Analysis and Exploration
 
-In this section, you’ll use Python and SQLAlchemy to perform basic climate analysis and data exploration of your climate database. Complete the following tasks by using SQLAlchemy ORM queries, Pandas, and Matplotlib.
+In this section I used Python and SQLAlchemy, ORM queries, Pandas, and Matplotlib to perform basic climate analysis and data exploration of my climate database. 
 
-* Use the provided [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files to complete your climate analysis and data exploration.
+* I used the provided [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files to complete my climate analysis and data exploration.
 
-* Use SQLAlchemy’s `create_engine` to connect to your SQLite database.
+* I used SQLAlchemy’s `create_engine` to connect to your SQLite database.
 
-* Use SQLAlchemy’s `automap_base()` to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
+* I used SQLAlchemy’s `automap_base()` to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
 
-* Link Python to the database by creating a SQLAlchemy session.
+* I linked Python to the database by creating a SQLAlchemy session and closed out the session at the end of my notebook.
 
-* **Important:** Don't forget to close out your session at the end of your notebook.
 
 #### Precipitation Analysis
 
-To perform an analysis of precipitation in the area, do the following:
+To perform an analysis of precipitation in the area, i have done the following:
 
 * Find the most recent date in the dataset.
 
@@ -42,7 +43,7 @@ To perform an analysis of precipitation in the area, do the following:
 
 #### Station Analysis
 
-To perform an analysis of stations in the area, do the following:
+To perform an analysis of stations in the area, i have done the following:
 
 * Design a query to calculate the total number of stations in the dataset.
 
