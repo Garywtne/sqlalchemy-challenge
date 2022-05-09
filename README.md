@@ -90,15 +90,15 @@ To perform an analysis of stations in the area, i have done the following:
 
     ![station-histogram](Images/station-histogram.png)
 
-* Close out your session.
+* Close out the session.
 
 - - -
 
-### Part 2: Design Your Climate App
+### Part 2: Climate App
 
-Now that you have completed your initial analysis, you’ll design a Flask API based on the queries that you have just developed.
+Design a Flask API based on the queries developed in the Climate Anaysis.
 
-Use Flask to create your routes, as follows:
+Using Flask to create the routes foloowing routes:
 
 * `/`
 
