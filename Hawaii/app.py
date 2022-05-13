@@ -15,12 +15,13 @@ from flask import Flask, jsonify
 #################################################
 # create engine to hawaii.sqlite
 engine = create_engine("sqlite:///../Resources/hawaii.sqlite")
-# engine = create_engine("sqlite:///hawaii.sqlite")
+
 
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
 Base.prepare(engine, reflect=True)
+print(Base.classes.keys())
 
 # Save references to each table
 Measurement = Base.classes.measurement
@@ -47,8 +48,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        #f"/api/v1.0/temp/start/end"
-    )
+        )
+
 
 # Create the route for precipitation.
 
@@ -57,8 +58,9 @@ def welcome():
 # Create the query.
 
 def precipitation():
+    # Print request to terminal
+    print("'Precipitation' page request recieved...")
 
-    
     # Calculate the date one year from the last date in data set.
     previous_year = dt.date(2017,8,23) - dt.timedelta(days=365)
 
@@ -82,6 +84,9 @@ def precipitation():
 # Create the query to return a list of the stations.
 
 def station_list():
+
+    # Print request to terminal
+    print("'Station' page request recieved...")
    
     s_list = session.query(Station.station).all()
 
@@ -105,6 +110,9 @@ def station_list():
 
 def tobs_list():
 
+    # Print request to terminal
+    print("'Tempreture Observations' page request recieved...")
+
     # Calculate the date one year from the last date in data set.
     previous_year = dt.date(2017,8,23) - dt.timedelta(days=365)    
 
@@ -123,8 +131,7 @@ def tobs_list():
     # Return the JSON of the list
     return jsonify(temps=tobs_list)
 
-
-
+# Create the route for TMIN, TAVG & TMAX   
 
 if __name__ == "__main__":
     app.run(debug=True)
