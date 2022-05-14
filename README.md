@@ -61,7 +61,8 @@ plt.rcParams["figure.figsize"] = (20,20)
 plt.savefig("Homework_Images/Last 12 months of precipitation data.png")
 plt.show()
 
-![Last 12 months of precipitation data](https://user-images.githubusercontent.com/85430216/167317977-c1cd74d1-9b3e-4255-84a0-5f0932a6634b.png)
+![Last 12 months of precipitation data](https://user-images.githubusercontent.com/85430216/168414976-77993032-3d19-4558-bccb-7b6c65352a85.png)
+
 
 #### Use Pandas to calcualte the summary statistics for the precipitation data
 
@@ -119,8 +120,8 @@ result1 = session.query(Measurement.tobs).\
 df2 = pd.DataFrame(result1, columns=['tobs'])
 
 #### Plot the results as a histogram
-  
-![last 12 months of temperature observation data USC00519281](https://user-images.githubusercontent.com/85430216/168413181-fe5f8ca5-6212-4ecf-98de-662f60693250.png)
+
+![last 12 months of temperature observation data USC00519281](https://user-images.githubusercontent.com/85430216/168414990-0deafc37-7650-4c3d-8b6a-f92de232c0af.png)
 
 #### Close out the session.
 
