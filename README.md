@@ -102,16 +102,14 @@ session.query(Measurement.station, func.count(Measurement.station)).\
 
 Station 'USC00519281' has the highest number of observations with 2772
 
-#### Using the most active station id from the previous query, calculate the lowest, highest, and average temperature.
+#### Calculate the lowest, highest, and average temperature for station USC00519281.
 
 session.query(func.min(Measurement.tobs), func.max(Measurement.tobs),func.avg(Measurement.tobs)).\
     filter(Measurement.station == 'USC00519281').all()
     
 The lowest tempreture observed at USC00519281 was 54.0, the highest was 85.0  and the average was 71.66378066378067
 
-
-#### Using the most active station id
-#### Query the last 12 months of temperature observation data for this station. and plot the results as a histogram
+#### Query the last 12 months of temperature observation data for station USC00519281.
 
 previous_year_1 = dt.date(2017,8,23)-dt.timedelta(days=365)
 
