@@ -28,20 +28,25 @@ In this section I used Python and SQLAlchemy, ORM queries, Pandas, and Matplotli
 To perform an analysis of precipitation in the area, i have done the following:
 
 #### Find the most recent date in the data set.
+
 most_recent_date = session.query(func.max(Measurement.date)).first()
 
 The most recent date is '2017-08-23'
 
 #### Calculate the date one year from the last date in data set.
+
 previous_year = dt.date(2017,8,23) - dt.timedelta(days=365)
 
 #### Perform a query to retrieve the data and precipitation scores
+
 result = session.query(Measurement.date,Measurement.prcp).filter(Measurement.date>=previous_year).all()
 
 #### Save the query results as a Pandas DataFrame and set the index to the date column
+
 df1 = pd.DataFrame(result,columns=['date', 'precipitation'])
 
 #### Sort the dataframe by date
+
 df1 = df1.sort_values('date')
 
 #### Use Pandas Plotting with Matplotlib to plot the data
@@ -59,6 +64,7 @@ plt.show()
 ![Last 12 months of precipitation data](https://user-images.githubusercontent.com/85430216/167317977-c1cd74d1-9b3e-4255-84a0-5f0932a6634b.png)
 
 #### Use Pandas to calcualte the summary statistics for the precipitation data
+
 df1.describe()
 
 ![Summary_statistics](https://user-images.githubusercontent.com/85430216/167318036-ef57c763-1f09-43ab-a099-ffc1c775365c.PNG)
@@ -69,14 +75,18 @@ df1.describe()
 To perform an analysis of stations in the area, i have done the following:
 
 #### Design a query to calculate the total number stations in the dataset
+
 session.query(func.count(Station.station)).all()
 
 There are 9 stations in the dataset
 
 #### Design a query to find the most active stations (i.e. what stations have the most rows?)
-#### List the stations and the counts in descending order.
+
+
 session.query(Measurement.station, func.count(Measurement.station)).\
     group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()
+    
+ #### List the stations and the counts in descending order.   
    
  [('USC00519281', 2772),
  ('USC00519397', 2724),
@@ -93,13 +103,12 @@ session.query(Measurement.station, func.count(Measurement.station)).\
 Station 'USC00519281' has the highest number of observations with 2772
 
 #### Using the most active station id from the previous query, calculate the lowest, highest, and average temperature.
+
 session.query(func.min(Measurement.tobs), func.max(Measurement.tobs),func.avg(Measurement.tobs)).\
     filter(Measurement.station == 'USC00519281').all()
     
 The lowest tempreture observed at USC00519281 was 54.0, the highest was 85.0  and the average was 71.66378066378067
 
-
-* Design a query to retrieve the previous 12 months of temperature observation data (TOBS).
 
 #### Using the most active station id
 #### Query the last 12 months of temperature observation data for this station. and plot the results as a histogram
