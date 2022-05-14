@@ -68,30 +68,56 @@ df1.describe()
 
 To perform an analysis of stations in the area, i have done the following:
 
-* Design a query to calculate the total number of stations in the dataset.
+### Design a query to calculate the total number stations in the dataset
+session.query(func.count(Station.station)).all()
 
-* Design a query to find the most active stations (the stations with the most rows).
+There are 9 stations in the dataset
 
-    * List the stations and observation counts in descending order.
+### Design a query to find the most active stations (i.e. what stations have the most rows?)
+### List the stations and the counts in descending order.
+session.query(Measurement.station, func.count(Measurement.station)).\
+    group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()
+   
+ [('USC00519281', 2772),
+ ('USC00519397', 2724),
+ ('USC00513117', 2709),
+ ('USC00519523', 2669),
+ ('USC00516128', 2612),
+ ('USC00514830', 2202),
+ ('USC00511918', 1979),
+ ('USC00517948', 1372),
+ ('USC00518838', 511)]
 
-    * Which station id has the highest number of observations?
+### Which station id has the highest number of observations?
 
-    * Using the most active station id, calculate the lowest, highest, and average temperatures.
+Station 'USC00519281' has the highest number of observations with 2772
 
-    * **Hint:** You will need to use functions such as `func.min`, `func.max`, `func.avg`, and `func.count` in your queries.
+### Using the most active station id from the previous query, calculate the lowest, highest, and average temperature.
+session.query(func.min(Measurement.tobs), func.max(Measurement.tobs),func.avg(Measurement.tobs)).\
+    filter(Measurement.station == 'USC00519281').all()
+    
+The lowest tempreture observed at USC00519281 was 54.0, the highest was 85.0  and the average was 71.66378066378067
+
 
 * Design a query to retrieve the previous 12 months of temperature observation data (TOBS).
 
-    * Filter by the station with the highest number of observations.
+### Using the most active station id
+### Query the last 12 months of temperature observation data for this station. and plot the results as a histogram
 
-    * Query the previous 12 months of temperature observation data for this station.
+previous_year_1 = dt.date(2017,8,23)-dt.timedelta(days=365)
 
-    * Plot the results as a histogram with `bins=12`, as shown in the following image:
+result1 = session.query(Measurement.tobs).\
+    filter(Measurement.station == 'USC00519281').\
+    filter(Measurement.date >= previous_year_1).all()
+df2 = pd.DataFrame(result1, columns=['tobs'])
 
-    ![station-histogram](Images/station-histogram.png)
+### Plot the results as a histogram
+  
+![last 12 months of temperature observation data USC00519281](https://user-images.githubusercontent.com/85430216/168413181-fe5f8ca5-6212-4ecf-98de-662f60693250.png)
 
-* Close out the session.
+### Close out the session.
 
+session.close()
 - - -
 
 ### Part 2: Climate App
